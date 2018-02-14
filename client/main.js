@@ -23,3 +23,6 @@ Template.hello.events({
     Meteor.call("updateValue");
   },
 });
+
+
+Meteor.subscribe("test");
