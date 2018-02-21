@@ -1,5 +1,7 @@
 import {Class} from 'meteor/jagi:astronomy';
-const Tests = new Meteor.Collection("tests");
+const Tests = new Mongo.Collection("tests");
+
+
 import {getRedisPusher, Events, RedisPipe, RedisOplog} from 'meteor/cultofcoders:redis-oplog';
 
 const Test = Class.create({
@@ -13,7 +15,7 @@ const Test = Class.create({
     events: {
         afterSave(e) {
 
-            console.log(e.target._id);
+            console.log("Testing");
 
             getRedisPusher().publish(`tests::${e.target._id}`, EJSON.stringify({
                 [RedisPipe.DOC]: {_id: e.target._id},
@@ -26,6 +28,7 @@ const Test = Class.create({
                 [RedisPipe.EVENT]: Events.UPDATE,
                 [RedisPipe.FIELDS]: ['status']
             }));
+
         }
     }
 });

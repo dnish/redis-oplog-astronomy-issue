@@ -1,22 +1,5 @@
 
 import randomstring from 'randomstring';
-import { RedisOplog } from 'meteor/cultofcoders:redis-oplog';
-
-
-// Redis
-
-RedisOplog.init({
-    redis: {
-        port: 6379,          // Redis port
-        host: '127.0.0.1',   // Redis host
-    },
-    "mutationDefaults": {
-        "optimistic": true,
-        "pushToRedis": true
-    },
-    debug: true, // default is false,
-    overridePublishFunction: true // default is true, replaces .publish with .publishWithRedis, set to false if you don't want to override it
-});
 
 
 import {Test, Tests} from "../imports/test";
